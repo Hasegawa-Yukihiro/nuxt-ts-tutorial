@@ -1,13 +1,17 @@
 <template>
-  <h1>About</h1>
+  <div>
+    <h1>About</h1>
+    <p>{{ aaaa }}</p>
+  </div>
 </template>
 
 <script lang="ts">
 export default {
-  head() {
-    return {
-      title: 'About',
-    }
-  },
+  data: () => ({
+    aaaa: 'test' as String,
+  }),
+  head: () => ({
+    title: 'About',
+  }),
 }
 </script>
