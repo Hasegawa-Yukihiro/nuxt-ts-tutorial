@@ -3,18 +3,23 @@
     <h1>About</h1>
     <p>{{ test }}</p>
     <!-- 新規 Todo 入力エリア -->
-    <input class="input" placeholder="Todo を入力" @keyup.enter="addTodo" />
-    <ul>
+    <BaseInput :placeholder="placeholder" @keyup.enter.native="addTodo" />
+    <ul class="list">
       <!-- Todo一覧 -->
-      <li v-for="(todo, i) in todos" :key="i">
-        <todo-list-item :todo="todo" @toggle="toggle" @remove="remove" />
-      </li>
+      <TodoListItem
+        v-for="(todo, i) in todos"
+        :key="i"
+        :todo="todo"
+        @toggle="toggle"
+        @remove="remove"
+      />
     </ul>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
+import BaseInput from '~/components/Atoms/BaseInput.vue'
 import TodoListItem from '~/components/Molecules/TodoListItem.vue'
 import { Todo } from '~/models/Todo'
 import { todosStore } from '~/store'
@@ -22,10 +27,12 @@ import { todosStore } from '~/store'
 export default Vue.extend({
   name: 'Todo',
   components: {
+    BaseInput,
     TodoListItem,
   },
   data: () => ({
     test: 'test' as String,
+    placeholder: 'Todo を入力',
   }),
   head: () => ({
     title: 'About',
@@ -39,6 +46,7 @@ export default Vue.extend({
     // Todo の追加
     addTodo(e: Event): void {
       if (e.target instanceof HTMLInputElement) {
+        if (e.target.value === '') return
         todosStore.add(e.target.value)
         e.target.value = ''
       }
@@ -56,6 +64,10 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+.list {
+  list-style: none;
+  padding: 0;
+}
 .container {
   width: 80%;
   display: flex;
