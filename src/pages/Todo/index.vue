@@ -1,7 +1,6 @@
 <template>
   <div class="container">
-    <h1>About</h1>
-    <p>{{ test }}</p>
+    <h1>Todo</h1>
     <!-- 新規 Todo 入力エリア -->
     <BaseInput :placeholder="placeholder" @keyup.enter.native="addTodo" />
     <ul class="list">
@@ -24,16 +23,21 @@ import TodoListItem from '~/components/Molecules/TodoListItem.vue'
 import { Todo } from '~/models/Todo'
 import { todosStore } from '~/store'
 
+interface Data {
+  placeholder: String
+}
+
 export default Vue.extend({
   name: 'Todo',
   components: {
     BaseInput,
     TodoListItem,
   },
-  data: () => ({
-    test: 'test' as String,
-    placeholder: 'Todo を入力',
-  }),
+  data(): Data {
+    return {
+      placeholder: 'Todo を入力',
+    }
+  },
   head: () => ({
     title: 'About',
   }),
