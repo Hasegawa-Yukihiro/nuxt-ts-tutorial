@@ -9,7 +9,7 @@ let todosStore: Todos
  * ストアを初期化する（型推論できるモジュールとして取得する）
  * @param store Vuex.Store
  */
-function initializeStores(store: Store<any>): void {
+function initializeStores(store: Store<never>): void {
   // Todos を型推論できるストアモジュール化
   todosStore = getModule(Todos, store)
 }

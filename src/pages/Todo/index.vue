@@ -1,17 +1,13 @@
 <template>
-  <div>
+  <div class="container">
     <h1>About</h1>
     <p>{{ test }}</p>
+    <!-- 新規 Todo 入力エリア -->
+    <input class="input" placeholder="Todo を入力" @keyup.enter="addTodo" />
     <ul>
       <!-- Todo一覧 -->
       <li v-for="(todo, i) in todos" :key="i">
-        <input type="checkbox" :checked="todo.done" @change="toggle(todo)" />
-        <span :class="{ done: todo.done }">{{ todo.text }}</span>
-        <button @click="remove(todo)">削除</button>
-      </li>
-      <!-- 新規 Todo 入力エリア -->
-      <li>
-        <input placeholder="Todo を入力" @keyup.enter="addTodo" />
+        <todo-list-item :todo="todo" @toggle="toggle" @remove="remove" />
       </li>
     </ul>
   </div>
@@ -19,11 +15,15 @@
 
 <script lang="ts">
 import Vue from 'vue'
+import TodoListItem from '~/components/Molecules/TodoListItem.vue'
 import { Todo } from '~/models/Todo'
 import { todosStore } from '~/store'
 
 export default Vue.extend({
-  name: 'TodoPage',
+  name: 'Todo',
+  components: {
+    TodoListItem,
+  },
   data: () => ({
     test: 'test' as String,
   }),
@@ -31,8 +31,7 @@ export default Vue.extend({
     title: 'About',
   }),
   computed: {
-    todos(): Array<Todo> {
-      console.log('todosStore', todosStore)
+    todos(): Todo[] {
       return todosStore.todos
     },
   },
@@ -56,9 +55,16 @@ export default Vue.extend({
 })
 </script>
 
-<style>
-/* 完了状態の Todo には打消し線をつける */
-.done {
-  text-decoration: line-through;
+<style scoped>
+.container {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 auto;
+}
+.input {
+  height: 30px;
+  padding: 5px;
 }
 </style>
