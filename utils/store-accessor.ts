@@ -1,12 +1,17 @@
 import { Store } from 'vuex'
 import { getModule } from 'vuex-module-decorators'
-import Todo from '~/store/Todo'
+import Todos from '~/store/todos'
 
 // eslint-disable-next-line import/no-mutable-exports
-let TodoStore: Todo
+let todosStore: Todos
 
-function initialiseStores(store: Store<any>): void {
-  TodoStore = getModule(Todo, store)
+/**
+ * ストアを初期化する（型推論できるモジュールとして取得する）
+ * @param store Vuex.Store
+ */
+function initializeStores(store: Store<any>): void {
+  // Todos を型推論できるストアモジュール化
+  todosStore = getModule(Todos, store)
 }
 
-export { initialiseStores, TodoStore }
+export { initializeStores, todosStore }
