@@ -55,9 +55,13 @@ export default Vue.extend({
         e.target.value = ''
       }
     },
+
     // Todo の削除
     remove(todo: Todo) {
-      todosStore.remove(todo)
+      const result = window.confirm(
+        `こちらのTodoを削除しますか？\n - ${todo.text}`
+      )
+      if (result) todosStore.remove(todo)
     },
     // Todo の done（完了状態）切り替え
     toggle(todo: Todo) {
@@ -78,9 +82,5 @@ export default Vue.extend({
   flex-direction: column;
   justify-content: center;
   margin: 0 auto;
-}
-.input {
-  height: 30px;
-  padding: 5px;
 }
 </style>

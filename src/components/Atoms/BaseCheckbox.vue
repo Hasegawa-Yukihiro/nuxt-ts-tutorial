@@ -1,5 +1,5 @@
 <template>
-  <input type="checkbox" :checked="checked" />
+  <input class="checkbox" type="checkbox" :checked="checked" />
 </template>
 
 <script lang="ts">
@@ -15,3 +15,9 @@ export default Vue.extend({
   },
 })
 </script>
+
+<style scoped>
+.checkbox {
+  cursor: pointer;
+}
+</style>
