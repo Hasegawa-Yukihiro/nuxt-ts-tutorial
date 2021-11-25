@@ -8793,6 +8793,11 @@ vue-client-only@^2.0.0:
   resolved "https://registry.yarnpkg.com/vue-client-only/-/vue-client-only-2.1.0.tgz#1a67a47b8ecacfa86d75830173fffee3bf8a4ee3"
   integrity sha512-vKl1skEKn8EK9f8P2ZzhRnuaRHLHrlt1sbRmazlvsx6EiC3A8oWF8YCBrMJzoN+W3OnElwIGbVjsx6/xelY1AA==
 
+vue-css-definition@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/vue-css-definition/-/vue-css-definition-0.1.0.tgz#49dd058d97b3baa84fdffe53b8f50e8fdf87fc0c"
+  integrity sha1-Sd0FjZezuqhP3/5TuPUOj9+H/Aw=
+
 vue-eslint-parser@^7.1.1, vue-eslint-parser@^7.10.0:
   version "7.11.0"
   resolved "https://registry.yarnpkg.com/vue-eslint-parser/-/vue-eslint-parser-7.11.0.tgz#214b5dea961007fcffb2ee65b8912307628d0daf"
