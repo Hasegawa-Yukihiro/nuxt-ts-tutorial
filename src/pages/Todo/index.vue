@@ -20,7 +20,7 @@
 import Vue from 'vue'
 import BaseInput from '~/components/Atoms/BaseInput.vue'
 import TodoListItem from '~/components/Molecules/TodoListItem.vue'
-import { Todo } from '~/models/Todo'
+import { ITodo } from '~/models/Todo'
 import { todosStore } from '~/store'
 
 interface Data {
@@ -39,10 +39,10 @@ export default Vue.extend({
     }
   },
   head: () => ({
-    title: 'About',
+    title: 'Todo',
   }),
   computed: {
-    todos(): Todo[] {
+    todos(): ITodo[] {
       return todosStore.todos
     },
   },
@@ -57,14 +57,14 @@ export default Vue.extend({
     },
 
     // Todo の削除
-    remove(todo: Todo) {
+    remove(todo: ITodo) {
       const result = window.confirm(
         `こちらのTodoを削除しますか？\n - ${todo.text}`
       )
       if (result) todosStore.remove(todo)
     },
     // Todo の done（完了状態）切り替え
-    toggle(todo: Todo) {
+    toggle(todo: ITodo) {
       todosStore.toggle(todo)
     },
   },
